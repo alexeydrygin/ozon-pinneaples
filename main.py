@@ -1,5 +1,5 @@
 # github.com/Churkashh
-VERSION = 1.08
+VERSION = 1.09
 
 import re
 import os
@@ -144,7 +144,7 @@ class Ozon():
                 
                 pinneaple_tag = soup.find(class_="zp7_29")
                 if pinneaple_tag:
-                    self.pinneaples = int(pinneaple_tag.get_text())
+                    self.pinneaples = int(pinneaple_tag.get_text().replace('\u202f', '').replace(' ', ''))
                     logger.info(f"[{self.account_name}] Ананасов на аккаунте: {self.pinneaples}")
                     
                 else:
