@@ -1,5 +1,5 @@
 # github.com/Churkashh
-VERSION = 1.09
+VERSION = 1.1
 
 import re
 import os
@@ -133,32 +133,37 @@ class Ozon():
                 time.sleep(30)
     
     def load_cycle(self) -> None:
-        """Посещение страницы акции и получение количества ананасов аккаунта"""
+        """Проверка куков на валидность и получение информации о профиле"""
         tries = 0
-        while True:
+        while tries <= 3:
             try:
-                for _ in range(3):
-                    resp = self.session.get("https://www.ozon.ru/landing/pineapple/?__rr=1")
-                    
-                soup = BeautifulSoup(resp.text, 'html.parser')
+                payload = {
+                  "email": True,
+                  "phone": True,
+                  "public": False,
+                  "profile": True,
+                  "contacts": False
+                }
                 
-                pinneaple_tag = soup.find(class_="zp7_29")
-                if pinneaple_tag:
-                    self.pinneaples = int(pinneaple_tag.get_text().replace('\u202f', '').replace(' ', ''))
-                    logger.info(f"[{self.account_name}] Ананасов на аккаунте: {self.pinneaples}")
-                    
-                else:
+                resp = self.session.post("https://api.ozon.ru/composer-api.bx/_action/getUserV2", json=payload)
+                if resp.status_code != 200:
                     tries += 1
-                    if tries > 5:   
-                        logger.error(f"[{self.account_name}] Не удалось посетить страницу ананасов ({resp.status_code}) -> куки невалид.")   
-                        self.stop_thread() 
-                    self.session = session(self.config)
                     continue
+                
+                self.user_id = resp.json()["userId"]
+                self.phone_number = resp.json()["credentials"]["phone"]
+                self.session.cookies.set("__Secure-user-id", str(self.user_id))
+                
+                logger.info(f"[{self.account_name}] Аккаунт успешно запущен. Айди: {self.user_id} | Номер: {self.phone_number}")
 
                 break
             except Exception as e:
                 logger.warning(f"Исключение: {e}")
                 time.sleep(1)
+        
+        else:
+            logger.error(f"[{self.account_name}] Ошибка запуска потока (перезапустите / смените IP)")
+            self.stop_thread()
     
     def get_pinneaple_product(self) -> None:
         """Функция получения товара с ананасом"""
