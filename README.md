@@ -1,7 +1,8 @@
 # Софт для сбора ананасов с ozon.ru
-v1.1: [Оповещения про обновления](https://t.me/+qY4o75AoHXkxYzY6)
+v1.11: [Оповещения про обновления](https://t.me/+qY4o75AoHXkxYzY6)
 ---
 # Изменения
+- [2024-12-22 - v1.1]: Обновление версии приложения.
 - [2024-12-01 - v1.1]: Изменения логики запуска потока.
 - [2024-11-25 - v1.09]: Фикс ошибки "invalid literal for int() with base 10".
 - [2024-11-13 - v1.08]: [BETA] Опция случайной генерации abt_data каждые 30 секунд.
@@ -25,7 +26,7 @@ v1.1: [Оповещения про обновления](https://t.me/+qY4o75AoH
         "Accounts": [
             {
                 "account_name": "Аккаунт 1",
-                "x-o3-app-version": "17.40.1(2518)",
+                "x-o3-app-version": "17.48.0(2528)",
                 "__Secure-access-token": "",
                 "__Secure-refresh-token": "",
                 "abt_data": "",,
@@ -102,7 +103,7 @@ v1.1: [Оповещения про обновления](https://t.me/+qY4o75AoH
     "Accounts": [
         {
             "account_name": "Аккаунт 1",
-            "x-o3-app-version": "17.40.1(2518)",
+            "x-o3-app-version": "17.48.0(2528)",
             "__Secure-access-token": "",
             "__Secure-refresh-token": "",
             "abt_data": "",,
@@ -112,7 +113,7 @@ v1.1: [Оповещения про обновления](https://t.me/+qY4o75AoH
         },
         {
             "account_name": "Аккаунт 2",
-            "x-o3-app-version": "17.40.1(2518)",
+            "x-o3-app-version": "17.48.0(2528)",
             "__Secure-access-token": "",
             "__Secure-refresh-token": "",
             "abt_data": "",,
@@ -122,7 +123,7 @@ v1.1: [Оповещения про обновления](https://t.me/+qY4o75AoH
         },
         {
             "account_name": "Аккаунт 3",
-            "x-o3-app-version": "17.40.1(2518)",
+            "x-o3-app-version": "17.48.0(2528)",
             "__Secure-access-token": "",
             "__Secure-refresh-token": "",
             "abt_data": "",,
