@@ -1,5 +1,5 @@
 # github.com/Churkashh
-VERSION = 1.1
+VERSION = 1.11
 
 import re
 import os
@@ -39,11 +39,11 @@ def session(config: dict) -> tls_client.Session:
             "Host": "api.ozon.ru",
             "MOBILE-GAID": str(uuid.uuid4()),
             "MOBILE-LAT": "0",
-            "User-Agent": "ozonapp_android/17.40.1+2518",
+            "User-Agent": "ozonapp_android/17.48.0+2528",
             "x-o3-app-name": "ozonapp_android",
             "x-o3-app-version": config["x-o3-app-version"],
             "x-o3-device-type": "mobile",
-            "x-o3-fp": Utils.generate_x_o3(),
+            "x-o3-fp": "1.01ae145142fa31f9",
             "x-o3-sample-trace": "false"
         }  
         
@@ -60,11 +60,6 @@ def session(config: dict) -> tls_client.Session:
 
 
 class Utils():
-    @staticmethod
-    def generate_x_o3() -> str: 
-        """Генерация x-o3-fp заголовка"""
-        return f"1.{''.join(random.choices(string.hexdigits[:16].lower(), k=16))}"
-    
     @staticmethod
     def generate_abt_data(prefix="7.") -> str:
         """Генерация рандом abt_data"""
