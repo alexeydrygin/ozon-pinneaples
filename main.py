@@ -14,7 +14,6 @@ import tls_client
 
 from loguru import logger
 from datetime import datetime
-from bs4 import BeautifulSoup
 
 if os.name == "nt":
     CMD = ctypes.windll.kernel32.GetConsoleWindow()
@@ -54,7 +53,7 @@ def session(config: dict) -> tls_client.Session:
         session.cookies.set("abt_data", config["abt_data"])
         
     if config["use_proxy"]:
-        session.proxies = f"http://{config["proxy"]}"
+        session.proxies = f"http://{config['proxy']}"
     
     return session
 
@@ -101,7 +100,7 @@ class Utils():
         start_time = datetime.now()
         if os.name == "nt":    
             while True:
-                title = f"v{VERSION} Фармер Ананасов (github.com/Churkashh) | Используется аккаунтов: {len(cfg["Accounts"])} | Собрано ананасов: {pinneaples_collected} | Товаров просмотрено: {products_checked} | Времени прошло: {datetime.now() - start_time}"
+                title = f"v{VERSION} Фармер Ананасов (github.com/Churkashh) | Используется аккаунтов: {len(cfg['Accounts'])} | Собрано ананасов: {pinneaples_collected} | Товаров просмотрено: {products_checked} | Времени прошло: {datetime.now() - start_time}"
                 ctypes.windll.kernel32.SetConsoleTitleW(title)
                 time.sleep(0.2)
                 
@@ -217,7 +216,7 @@ class Ozon():
                         pinneaples_collected += 1
                         self.pinneaples_collected += 1
                     
-                    logger.success(f"[{self.account_name}] Успешно залутал ананас: {resp.json()["data"]["notificationBar"]["title"]}. | Собрано: {self.pinneaples_collected}")
+                    logger.success(f"[{self.account_name}] Успешно залутал ананас: {resp.json()['data']['notificationBar']['title']}. | Собрано: {self.pinneaples_collected}")
                     Utils.sleep_func(self.account_name)
                 
                 elif resp.status_code == 403:
@@ -250,7 +249,7 @@ class Ozon():
     
 def process_account(account: dict):
     """Поток для каждого аккаунта"""
-    logger.info(f"[{account["account_name"]}] Запускаю поток...")
+    logger.info(f"[{account['account_name']}] Запускаю поток...")
     ozon = Ozon(account)
     threading.Thread(target=ozon.reset_product_check_tries).start()
     threading.Thread(target=ozon.update_abt_data).start()
